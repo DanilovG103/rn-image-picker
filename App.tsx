@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  NativeModules,
-  Button,
-  Image,
-  Platform,
-} from 'react-native';
+import {SafeAreaView, NativeModules, Button, Image} from 'react-native';
 
 const {MyAppModule} = NativeModules;
 
@@ -13,18 +7,13 @@ const App = () => {
   const [uri, setUri] = useState('');
   const onPress = async () => {
     try {
-      if (Platform.OS === 'android') {
-        const file = await MyAppModule.chooseFile();
-        setUri(file);
-      } else {
-        const smth = await MyAppModule.chooseFile();
-      }
+      const file = await MyAppModule.chooseFile();
+      setUri(file);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(uri);
   return (
     <SafeAreaView
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
